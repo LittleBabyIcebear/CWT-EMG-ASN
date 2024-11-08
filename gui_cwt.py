@@ -1,6 +1,4 @@
-import streamlit as st 
 import pandas as pd 
-import numpy as np 
 import plotly.graph_objects as go
 import streamlit as st  
 from numba import jit
@@ -8,7 +6,7 @@ from plotly.subplots import make_subplots
 import math 
 import numpy as np
 import pywt
-from numba import jit
+import wfdb
 
 @jit(nopython=True)
 def cwt(coloumncount, rowcount, a, da, dt, f0, y):
@@ -258,7 +256,9 @@ def plot_thresholded_cwt_with_boundaries(Z, threshold_coef=0.1):
 
 
 # Load the data
-df = pd.read_csv("s2.csv")
+record = wfdb.rdrecord("s2")
+# Konversi data ke DataFrame
+df = pd.DataFrame(record.p_signal, columns=record.sig_name)
 
 st.title("Define Onset Offset from EMG 🐾")
 
