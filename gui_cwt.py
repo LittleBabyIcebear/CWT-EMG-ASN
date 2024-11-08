@@ -256,7 +256,7 @@ def plot_thresholded_cwt_with_boundaries(Z, threshold_coef=0.1):
 
 
 # Load the data
-record = wfdb.rdrecord("S2.dat")
+record = wfdb.rdrecord("S2")
 # Konversi data ke DataFrame
 df = pd.DataFrame(record.p_signal, columns=record.sig_name)
 
